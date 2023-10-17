@@ -1,4 +1,8 @@
 # Direction_navigation_using_Openai
+
+## Reference
+https://github.com/openai/openai-quickstart-node
+
 ## Setup
 
 ```sh
