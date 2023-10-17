@@ -7,3 +7,5 @@ npm i
 npm start  # development
 npm run dev  # production
 ```
+## Direction
+http://localhost:3000
