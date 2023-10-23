@@ -26,15 +26,31 @@ export default function Home() {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
 
+      // Save result to a text file
+      saveToFile(data.result, 'directions.txt');
+
       setResult(data.result);
       setOriginInput("");
       setDestinationInput("");
-      // alert(data.result);
     } catch (error) {
-
       console.error(error);
       alert(error.message);
     }
+  }
+
+  // Function to save content to a text file
+  function saveToFile(content, filename) {
+    const blob = new Blob([content], { type: 'text/plain' });
+
+    const reader = new FileReader();
+    reader.onload = function () {
+      const link = document.createElement('a');
+      link.href = reader.result;
+      link.download = filename;
+      link.click();
+    };
+
+    reader.readAsDataURL(blob);
   }
 
   return (
@@ -67,8 +83,8 @@ export default function Home() {
           <input type="submit" value="Get Directions" />
         </form>
         <div className={styles.result} style={{ whiteSpace: 'pre-line' }}>
-  {result}
-</div>
+          {result}
+        </div>
       </main>
     </div>
   );
